@@ -123,5 +123,17 @@
    * Returns the record format as a record_format_t enum.
    */
   record_format_t record_format(const FM_BPAMHandle* bh, const DBG_Opts* opts);
+
+  typedef enum {
+    DATASET_ORG_PDS,
+    DATASET_ORG_PS,
+    DATASET_ORG_UNKNOWN
+  } dataset_org_t;
+
+  /*
+   * dataset_org: Return the dataset organization.
+   * Returns the dataset organization as a dataset_org_t enum.
+   */
+  dataset_org_t dataset_org(const FM_BPAMHandle* bh, const DBG_Opts* opts);
     
 #endif

@@ -76,8 +76,8 @@ static int bpam_open(FM_BPAMHandle* handle, int mode, const DBG_Opts* opts)
     return rc;
   }
 
-  if (!dcb->dcbdsgpo) {
-    errmsg(opts, "Dataset is not a PDSE.\n");
+  if (!dcb->dcbdsgpo && !dcb->dcbdsgps) {
+    errmsg(opts, "Dataset is not a PDS or PS.\n");
     return 4;
   }
 
@@ -1035,4 +1035,14 @@ record_format_t record_format(const FM_BPAMHandle* bh, const DBG_Opts* opts)
     return RECORD_FORMAT_U;
   }
   return RECORD_FORMAT_UNKNOWN;
+}
+
+dataset_org_t dataset_org(const FM_BPAMHandle* bh, const DBG_Opts* opts)
+{
+  if (bh->dcb->dcbdsgpo) {
+    return DATASET_ORG_PDS;
+  } else if (bh->dcb->dcbdsgps) {
+    return DATASET_ORG_PS;
+  }
+  return DATASET_ORG_UNKNOWN;
 }
