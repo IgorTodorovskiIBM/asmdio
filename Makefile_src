@@ -13,6 +13,8 @@ cdeps   := $(cobjs:.o=.d)
 
 all: $(BLDDIR)/$(archive)
 
+tests
+
 $(BLDDIR)/$(archive): $(objects)
 	ar -r $@ $^
 	
